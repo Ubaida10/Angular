@@ -1,0 +1,33 @@
+<div class="overflow-x-auto">
+  <span class="text-3xl font-bold">{{ title }}</span>
+  <div class="w-70 md:w-50 lg:w-100 mb-5">
+    <table class="table table-zebra">
+      <thead class="bg-grey-200">
+      <tr>
+        <th class ="px-4 py-2 text-center border border-gray-300">Index</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Even/Odd</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Room Number</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Room Type</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Room Price</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Room Amenities</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Checkin Time</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Checkout Time</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Rating</th>
+        <th class ="px-4 py-2 text-center border border-gray-300">Book Room</th>
+      </tr>
+      </thead>
+      <tr class="hover" [ngClass]="e ? 'even' : 'odd'" *ngFor="let room of roomList; let e = even; let i = index">
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ i }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ e ? 'Even' : 'Odd' }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.roomNumber }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.roomType }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.price | currency:'EUR' }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.amenities | titlecase }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.checkinTime | date: 'medium' }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{ room.checkoutTime | date: 'medium' }}</td>
+        <td class ="px-4 py-2 text-center border border-gray-300">{{room.rating | number: '1.1-1'}}</td>
+        <button class="btn btn-accent" (click)="bookRoom(room)">Book Room</button>
+      </tr>
+    </table>
+  </div>
+</div>

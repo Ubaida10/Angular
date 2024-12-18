@@ -1,0 +1,33 @@
+<!-- Interpolation -->
+<span class="text-3xl font-bold">Welcome to {{ hotelName }}</span>
+
+<!-- Property binding -->
+<div [hidden]="hideRooms">
+  Number Of Rooms:
+  <div [ngStyle]="{'color': rooms.availableRooms ? 'tomato' : 'steelblue'}" [innerText]="numberOfRooms"></div>
+</div>
+
+<!-- Null Collision Operator -->
+{{ rooms.availableRooms ?? 'No Rooms' }}
+<br>
+<!-- {{ roomList|json }} -->
+<div *ngIf="selectedRoom">
+  {{ selectedRoom |json}}
+</div>
+
+<!-- Optional Chaining -->
+<div  *ngIf="rooms?.availableRooms">
+  <app-rooms-list [roomList]="roomList" (selectedRoom)="selectRoom($event)" [title]=" title "></app-rooms-list>
+</div>
+
+<div class="space-y-5">
+  <button class="space-x-4">
+    <button class="btn btn-active btn-secondary" (click)="toggleRooms()">Toggle</button>
+    <button class="btn btn-accent" (click)="addRoom()">Add Room</button>
+  </button>
+  <!-- Event binding -->
+  <div class="space-x-4">
+    <button class="btn btn-accent" (click)="hideRoomsDetails()">Hide Details</button>
+    <button class="btn btn-accent" (click)="showRoomsDetails()">Show Details</button>
+  </div>
+</div>

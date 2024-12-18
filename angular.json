@@ -85,12 +85,16 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/tailwindcss/dist/tailwind.min.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c064a4ab-69d6-457c-bded-11603b5d9150"
   }
 }
