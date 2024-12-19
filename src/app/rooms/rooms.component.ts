@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import { Room, RoomList } from './rooms';
 import {
   JsonPipe,
@@ -6,6 +6,7 @@ import {
   NgStyle,
 } from '@angular/common';
 import {RoomsListComponent} from './rooms-list/rooms-list.component';
+import {HeaderComponent} from '../header/header.component';
 
 @Component({
   selector: 'app-rooms',
@@ -18,7 +19,7 @@ import {RoomsListComponent} from './rooms-list/rooms-list.component';
   templateUrl: './rooms.component.html',
   styleUrl: './rooms.component.css'
 })
-export class RoomsComponent implements OnInit, DoCheck{
+export class RoomsComponent implements OnInit, DoCheck, AfterViewInit{
 
   hotelName = 'Hotel California';
   numberOfRooms:any = 10;
@@ -29,6 +30,9 @@ export class RoomsComponent implements OnInit, DoCheck{
     bookedRooms: 5
   }
 
+  //creating new instance of Header Component
+  @ViewChild(HeaderComponent) headerComponent! : HeaderComponent
+
   roomList: RoomList[] = []
   selectedRoom!: RoomList
 
@@ -37,6 +41,7 @@ export class RoomsComponent implements OnInit, DoCheck{
 
 
   ngOnInit(): void{
+    console.log(this.headerComponent);
     this.roomList = [
       {
         roomNumber:1,
@@ -74,6 +79,11 @@ export class RoomsComponent implements OnInit, DoCheck{
   ngDoCheck(): void {
     console.log("Ng Do check is called!!");
   }
+
+  ngAfterViewInit():void {
+    console.log(this.headerComponent);
+  }
+
   toggleRooms(){
     this.hideRooms =!this.hideRooms;
     this.title="Rooms List "
